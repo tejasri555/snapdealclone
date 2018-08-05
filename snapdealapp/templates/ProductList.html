@@ -1,0 +1,68 @@
+{% extends "project.html" %}
+{% load staticfiles  %}
+{% block content %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js">
+</script><style>
+    a {
+        text-decoration: none !important;
+    }
+    .material-icons {
+        display: inline-flex;
+        vertical-align: middle;
+    }
+    .mdl-card__title{
+        align:center !important;
+    }
+
+
+</style>
+<div align="left">
+    <div class="mdl-grid">
+
+        <div class="mdl-cell mdl-cell---col">
+            <div class="mdl-card__supporting-text">
+                <img src="/media/{{product.image}}" height='90%' width="90%" style=""/>
+                </div>
+
+        </div>
+        <div class="mdl-cell mdl-cell--7-col" id="table-wrapper" style="margin-left:8px">
+
+                        <h3>
+                            {{product.title}}
+                        {{product.description}}
+                        </h3>
+
+                        <h4>
+                            <b>
+                                Price:₹</b> {{product.price}}
+                        </h4>
+            <h6>No Cost EMINo Extra Cost EMI* on Axis Bank Credit CardsT&C</h6>
+
+<h6>No Cost EMINo Cost EMI on Bajaj Finserv EMI Card on cart value above ₹4499T&C</h6>
+            {% if product.title in cart %}
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised"
+                   href="{% url 'snapdealapp:cart' %}">
+                    <i class="material-icons">shopping_cart</i> Go to Cart
+                </a>
+                {% else %}
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised"
+                   href="{% url 'snapdealapp:add_to_cart' product.id%}">
+                    <i class="material-icons">shopping_cart</i> Add to cart
+                </a>
+                {% endif %}
+            <h3>Delivery details</h3>
+            <h6>Delivery
+Item is available at 500070. Change
+
+ Standard Delivery in 6-7 days. (+) Rs 29
+ Cash on Delivery also available for this location.</h6>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+

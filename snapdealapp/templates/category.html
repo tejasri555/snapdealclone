@@ -1,0 +1,59 @@
+{% extends "project.html" %}
+{% load staticfiles  %}
+{% block content %}
+
+	<div class="container">
+		 <h1 align="center">Category Details</h1>
+		 <br>
+		 <br>
+        {% if request.user.is_superuser %}
+			 <button class="btn btn-default active"><a href="{% url 'snapdealapp:categoryadd_html' %}">Add Category</a></button>
+		 {% endif %}
+		 <br>
+		 <br>
+	{% if category %}
+	<div class="container">
+		<div class="row">
+	    {% for cat in category %}
+			<div class="col-md-4 responsive" id={item.id}>
+			<a href="{% url 'snapdealapp:product_html' cat.id %}" >
+                      <div class="thumbnail">
+
+                          <div  class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner" >
+                                <div class="item active" >
+                                {% if cat.image %}
+								<img src="{{ cat.image.url }}" class="img-responsive img-rounded"  height="400px" width="300px" >
+							{% endif %}
+                            <div class="carousel-caption">
+                                          <h2>{{ cat.title }}</h2>
+                                      <p>{{cat.description}}</p>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+					  </div>
+			</a>
+            {% if request.user.is_superuser %}
+                <a href="{% url 'snapdealapp:edit_category_html' cat.id %}" >edit</a>
+
+
+	            <a href="{% url 'snapdealapp:delete_category_html' cat.id %}" >delete</a>
+                {% endif %}
+			</div>
+
+	    {% endfor %}
+
+		</div>
+	</div>
+	{% else %}
+	    <p>No categories to show</p>
+	{% endif %}
+	</div>
+{% endblock %}
+
+
+
+

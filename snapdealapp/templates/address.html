@@ -1,0 +1,78 @@
+
+
+{% extends "project.html" %}
+{% load staticfiles  %}
+{% block content %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js">
+</script><style>
+    a {
+        text-decoration: none !important;
+    }
+    .material-icons {
+        display: inline-flex;
+        vertical-align: middle;
+    }
+    .mdl-card__title{
+        align:center !important;
+    }
+
+
+</style>
+ <button class="btn btn-default active"><a href="{% url 'snapdealapp:address_add_html' %}">Add Address</a></button>
+
+<div class="mdl-grid">
+{% if address%}
+
+  {% for add in address %}
+
+    <div class="mdl-cell mdl-cell--3-col">
+        <div class="mdl-card mdl-shadow--4dp" style="width:240px;text-align:center;">
+             <P style="color:black">{{add.fullname}}-{{add.mobileno }}</P>
+
+             <P style="color:black">{{add.street}},{{add.city }},{{add.landmark}}</P>
+
+             <P style="color:black">{{add.state }},{{add.pincode}}</P>
+                  <P style="color:black">{{add.address_type}}</P>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised"
+                 href="{% url 'snapdealapp:address_edit_html' add.id%}" >
+             <i class="material-icons">edit</i>
+                </a>
+         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised"
+                 href="{% url 'snapdealapp:address_delete_html' add.id %}">
+             <i class="material-icons">delete</i>
+         </a>
+      <a>   ........................        </a>
+                   <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised"
+                 href="{% url 'snapdealapp:place_order' %}" >
+           deliver here
+                </a>
+</div>
+
+
+             </div>
+
+     </div>
+  {% endfor %}
+
+	{% else %}
+	   <CENTER><H4>Please add a delivery address .... </H4></CENTER>
+	{% endif %}
+
+
+
+
+</div>
+<br>
+{% endblock %}
+
+
+
+
+
+
+
+
+

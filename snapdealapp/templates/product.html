@@ -1,0 +1,64 @@
+{% extends "project.html" %}
+{% load staticfiles  %}
+{% block content %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js">
+</script><style>
+    a {
+        text-decoration: none !important;
+    }
+    .material-icons {
+        display: inline-flex;
+        vertical-align: middle;
+    }
+    .mdl-card__title{
+        align:center !important;
+    }
+
+
+</style>
+<div style=”float:right”>
+    {% if request.user.is_superuser %}
+    <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" href="{{categoryID}}/product/add">
+               + Add Product
+        </a>
+		 {% endif %}
+        <br>
+</div>
+
+<div class="mdl-grid">
+
+
+{% if product%}
+    {% for obj in product %}
+
+    <div class="mdl-cell mdl-cell--3-col">
+        <div class="mdl-card mdl-shadow--4dp" style="width:240px;text-align:center;">
+
+            <a href="{% url 'snapdealapp:product_details_html' obj.product__id %}">
+                <img src="/media/{{obj.product__image}}" height="190px" width="200px" style="margin: auto; padding-top:12px;"/>
+            </a>
+
+
+             <div class="mdl-card__supporting-text">
+                <strong style="color:black">{{obj.product__title}}</strong>
+                 <br> <strong style="color:black">price:{{obj.product__price}}</strong>
+             </div>
+ {% if request.user.is_superuser %}
+            <div class="mdl-card__actions mdl-card--border">
+
+				<a href="{% url 'snapdealapp:product_edit_html' obj.id obj.product__id %}">edit</a>
+				<a href="{% url 'snapdealapp:product_delete_html' obj.id obj.product__id %}">delete</a>
+        {% endif %}
+
+     </div>
+    </div>
+
+    </div>
+    {%endfor%}
+       {% endif %}
+</div>
+<br>
+{% endblock %}
+

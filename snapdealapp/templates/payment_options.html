@@ -1,0 +1,106 @@
+
+
+{% extends "project.html" %}
+{% load staticfiles  %}
+{% block content %}
+<div class="container">
+  <h2>Payment Options</h2>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Credit Card</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+            <form class="form-inline" action="/action_page.php" style="align:center;">
+  <div class="form-group">
+    <label for="text">Enter Card Number:</label>
+    <input type="text" class="form-control" id="name">
+  </div>
+ <br>
+     <br>
+  <div class="form-group">
+    <label for="password">Enter cvv:</label>
+    <input type="password" class="form-control" id="cvv">
+  </div>
+     <br>     <br>
+     <div class="form-group">
+    <label for="text">Enter expiry date:</label>
+    <input type="text" class="form-control" id="date">
+  </div>
+     <br>     <br>
+  <div class="checkbox">
+    <label><input type="checkbox"> Remember me</label>
+  </div>
+    <br>     <br>
+<a href="{% url 'snapdealapp:payment_success'%}" class="btn btn-info btn-md">pay money</a>
+      <br>  <br>  <br>
+</form>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Phone pe</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+             <h4>you will be directed to phone pe page........</h4>
+      <br>
+          <a href="{% url 'snapdealapp:payment_success'%}" class="btn btn-info btn-md">pay money</a>
+        <br>  <br>  <br>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Net Banking</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body"><form class="form-inline" action="/action_page.php" style="align:center;">
+  <div class="form-group">
+    <label for="text">Enter Bank Name:</label>
+    <input type="text" class="form-control" id="name1">
+  </div>
+ <br>
+     <br>
+            <div class="form-group">
+    <label for="text">Enter Account Number:</label>
+    <input type="text" class="form-control" id="name2">
+  </div>
+ <br>
+     <br>
+
+
+  <div class="checkbox">
+    <label><input type="checkbox"> Remember me</label>
+  </div>
+    <br>     <br>
+<a href="{% url 'snapdealapp:payment_success'%}" class="btn btn-info btn-md">pay money</a>
+      <br>  <br>  <br>
+</form></div>
+      </div>
+    </div>
+      <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Cash on delivery</a>
+        </h4>
+      </div>
+      <div id="collapse4" class="panel-collapse collapse">
+        <div class="panel-body">
+          <a href="{% url 'snapdealapp:payment_success'%}" class="btn btn-info btn-md">pay money</a>
+        <br>  <br>  <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

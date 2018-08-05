@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div style="background-color: #E83C53;">
+<div style="background-color:  # #990073;color: white;margin-left:39px;" >India's Fastest Online Shopping Destination</div>
+<nav class="navbar navbar-light" style="background-color: #E83C53;">
+
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="myNavbar">
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <ul class="nav navbar-nav navbar-left">
+
+                <li><a href="{% url 'snapdealapp:main_html' %}"><span style="font-size:24px;text-decoration:none;color:#f2ef27;">SnapDeal</span></a></li>
+                <li><a  href="{% url 'snapdealapp:main_html' %}" style="color: #F2EF27;">HOME</a></li>
+                <a class="navbar-brand" style="color: #F2EF27;"> </a>
+
+                <li><a href="{% url 'snapdealapp:category_html' %}" style="color: #F2EF27;">All Categories</a></li>
+                <li><a href="{% url 'snapdealapp:allproducts' %}" style="color: #F2EF27;">All Products</a></li>
+                <li>  <form class="form-inline my-2 my-lg-0" id="searchform" action="{% url 'snapdealapp:list' %}" method="get" accept-charset="utf-8">
+        <select  name="r" class="form-control" style="margin-top:10px;">
+              <option value="category">category</option>
+              <option value="product">product</option>
+            </select>
+
+      <input class="form-control mr-sm-2" id="searchbox" style="margin-top:10px;" name="q" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" id="search_submit"  type="submit" style="margin-top:10px;">Search</button>
+
+    </form>
+ </li>
+            </ul>
+
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li><a href="{% url 'snapdealapp:order_html' %}" style="color: #F2EF27;">{{user.get_username}},Your
+                    orders</a></li>
+                <li><a href="{% url 'snapdealapp:cart' %}" target="_blank"><span
+                        class="glyphicon glyphicon-shopping-cart" style="color: #F2EF27;"><span>Cart </span></span></a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li><a href="{% url 'snapdealapp:logout_html' %}" style="color: #F2EF27;"><span
+                        class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'snapdealapp:signup' %}" style="color: #F2EF27;" target="_blank"><span
+                        class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="{% url 'snapdealapp:login_html' %}" style="color: #F2EF27;" target="_blank"><span
+                        class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+</div>
+
+<!-- Footer -->
+
+<!-- Footer -->
+{% load static %}
+{% load staticfiles %}
+{% block content %}
+{% endblock %}
+<!-- Footer -->
+
+
+</body>
+
+</html>

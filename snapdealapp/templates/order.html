@@ -1,0 +1,96 @@
+
+{% extends "project.html" %}
+{% load staticfiles  %}
+{% block content %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js">
+</script><style>
+    a {
+        text-decoration: none !important;
+    }
+    .material-icons {
+        display: inline-flex;
+        vertical-align: middle;
+    }
+    .mdl-card__title{
+        align:center !important;
+    }
+
+
+</style>
+
+<h1>Ordered List</h1>
+{% if order%}
+<p>
+  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+   proceed to payment : Rs.{{total}}
+  </a>
+</p>
+{%endif%}
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+<a href="{% url 'snapdealapp:payment_success'%}" class="btn btn-info btn-md">CASH ON DELIVERY</a>
+   <a href="{% url 'snapdealapp:payment_options'%}" class="btn btn-info btn-md">OTHER BANKING OPTIONS</a>
+  </div>
+</div>
+
+
+
+{%if order%}
+ {% for items in order%}
+<div align="left">
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--8-col">
+            <div class="mdl-card mdl-shadow--2dp" style="width: 100%">
+
+                <div class="mdl-grid" style="margin: 0;">
+                    <div class="mdl-cell mdl-cell--6-col">
+                        <div class="mdl-card__supporting-text">
+                            <img src="/media/{{items.products.image}}" width="180px" style=""/>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col">
+                        <p>
+                            {{items.products.title}}
+                        </p>
+                        <p>
+                            <b>INFO:</b> {{items.products.description}}
+                        </p>
+                        <p>
+                            <b>
+                                Price:</b> {{items.products.price}}
+                        </p>
+                        <p>
+                             <a class="btn btn-primary btn-lg active" href="{% url 'snapdealapp:product_details_html' items.products.id%}">view_product</a>
+                        </p>
+                        <p>
+        <a  class="btn btn-primary btn-lg active" href="{% url 'snapdealapp:remove_from_orderedlist' items.id%}">remove_product</a>
+                        </p>
+                        <!-- Colored raised button -->
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+   {% endfor %}
+
+	{% else %}
+	   <CENTER><H4>Your ordered list is empty!!!!</H4></CENTER>
+	{% endif %}
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
